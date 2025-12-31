@@ -1,4 +1,5 @@
 "use client";
+import { useMemo } from "react";
 
 import {
   BoldIcon,
@@ -51,83 +52,91 @@ const ToolbarButton = ({
 
 export const Toolbar = () => {
   const { editor } = useEditorStore();
+
   const sections: {
     label: string;
     icon: LucideIcon;
     onClick: () => void;
     isActive?: boolean;
-  }[][] = [
-    [
-      {
-        label: "Undo",
-        icon: Undo2Icon,
-        onClick: () => editor?.chain().focus().undo().run(),
-      },
-      {
-        label: "Redo",
-        icon: Redo2Icon,
-        onClick: () => editor?.chain().focus().redo().run(),
-      },
-      {
-        label: "Print",
-        icon: PrinterIcon,
-        onClick: () => window.print(),
-      },
-      {
-        label: "Spell Check",
-        icon: SpellCheckIcon,
-        onClick: () => {
-          const current = editor?.view.dom.getAttribute("spellcheck");
-          editor?.view.dom.setAttribute(
-            "spellcheck",
-            current === "false" ? "true" : "false"
-          );
+  }[][] = useMemo(
+    () => [
+      [
+        {
+          label: "Undo",
+          icon: Undo2Icon,
+          onClick: () => editor?.chain().focus().undo().run(),
         },
-      },
+        {
+          label: "Redo",
+          icon: Redo2Icon,
+          onClick: () => editor?.chain().focus().redo().run(),
+        },
+        {
+          label: "Print",
+          icon: PrinterIcon,
+          onClick: () => window.print(),
+        },
+        {
+          label: "Spell Check",
+          icon: SpellCheckIcon,
+          onClick: () => {
+            const current = editor?.view.dom.getAttribute("spellcheck");
+            editor?.view.dom.setAttribute(
+              "spellcheck",
+              current === "false" ? "true" : "false"
+            );
+          },
+        },
+      ],
+      [
+        {
+          label: "Bold",
+          icon: BoldIcon,
+          onClick: () => editor?.chain().focus().toggleBold().run(),
+          isActive: editor?.isActive("bold"),
+        },
+        {
+          label: "Italic",
+          icon: ItalicIcon,
+          onClick: () => editor?.chain().focus().toggleItalic().run(),
+          isActive: editor?.isActive("italic"),
+        },
+        {
+          label: "Underline",
+          icon: UnderlineIcon,
+          onClick: () => editor?.chain().focus().toggleUnderline().run(),
+          isActive: editor?.isActive("underline"),
+        },
+      ],
+      [
+        {
+          label: "Comment",
+          icon: MessageSquarePlusIcon,
+          onClick: () => console.log("TODO: Add Comment"),
+          // isActive: false // TODO: Enable this functionality
+        },
+        {
+          label: "List Todo",
+          icon: ListTodoIcon,
+          onClick: () => editor?.chain().focus().toggleTaskList().run(),
+          isActive: editor?.isActive("taskList"),
+        },
+        {
+          label: "Remove Formatting",
+          icon: RemoveFormattingIcon,
+          onClick: () => editor?.chain().focus().unsetAllMarks().run(),
+        },
+      ],
     ],
-    [
-      {
-        label: "Bold",
-        icon: BoldIcon,
-        onClick: () => editor?.chain().focus().toggleBold().run(),
-        isActive: editor?.isActive("bold"),
-      },
-      {
-        label: "Italic",
-        icon: ItalicIcon,
-        onClick: () => editor?.chain().focus().toggleItalic().run(),
-        isActive: editor?.isActive("italic"),
-      },
-      {
-        label: "Underline",
-        icon: UnderlineIcon,
-        onClick: () => editor?.chain().focus().toggleUnderline().run(),
-        isActive: editor?.isActive("underline"),
-      },
-    ],
-    [
-      {
-        label: "Comment",
-        icon: MessageSquarePlusIcon,
-        onClick: () => console.log("TODO: Add Comment"),
-        // isActive: false // TODO: Enable this functionality
-      },
-      {
-        label: "List Todo",
-        icon: ListTodoIcon,
-        onClick: () => editor?.chain().focus().toggleTaskList().run(),
-        isActive: editor?.isActive("taskList"),
-      },
-      {
-        label: "Remove Formatting",
-        icon: RemoveFormattingIcon,
-        onClick: () => editor?.chain().focus().unsetAllMarks().run(),
-      },
-    ],
-  ];
+    [editor]
+  );
 
   return (
-    <div className="px-2.5 py-2 rounded-[24px] min-h-[40px] flex items-center gap-x-0.5 overflow-x-auto bg-custom-4 dark:bg-custom-3">
+    <div
+      role="toolbar"
+      aria-label="Editor formatting toolbar"
+      className="px-2.5 py-2 rounded-[24px] min-h-[40px] flex items-center gap-x-0.5 overflow-x-auto bg-custom-4 dark:bg-custom-3"
+    >
       {sections[0].map((item) => (
         <ToolbarButton key={item.label} {...item} />
       ))}
