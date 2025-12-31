@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 
-import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
-import { Accordion as AccordionPrimitive } from "radix-ui"
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+import { Accordion as AccordionPrimitive } from "radix-ui";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 function Accordion({
   className,
@@ -14,10 +14,10 @@ function Accordion({
   return (
     <AccordionPrimitive.Root
       data-slot="accordion"
-      className={cn("flex w-full flex-col", className)}
+      className={cn("flex flex-col w-full", className)}
       {...props}
     />
-  )
+  );
 }
 
 function AccordionItem({
@@ -30,7 +30,7 @@ function AccordionItem({
       className={cn("not-last:border-b", className)}
       {...props}
     />
-  )
+  );
 }
 
 function AccordionTrigger({
@@ -49,11 +49,17 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <ChevronDownIcon data-slot="accordion-trigger-icon" className="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden" />
-        <ChevronUpIcon data-slot="accordion-trigger-icon" className="pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline" />
+        <ChevronDownIcon
+          data-slot="accordion-trigger-icon"
+          className="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden"
+        />
+        <ChevronUpIcon
+          data-slot="accordion-trigger-icon"
+          className="hidden pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:inline"
+        />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
-  )
+  );
 }
 
 function AccordionContent({
@@ -64,7 +70,7 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      className="data-open:animate-accordion-down data-closed:animate-accordion-up text-xs overflow-hidden"
+      className="overflow-hidden text-xs data-open:animate-accordion-down data-closed:animate-accordion-up"
       {...props}
     >
       <div
@@ -76,7 +82,7 @@ function AccordionContent({
         {children}
       </div>
     </AccordionPrimitive.Content>
-  )
+  );
 }
 
-export { Accordion, AccordionContent,AccordionItem, AccordionTrigger }
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };

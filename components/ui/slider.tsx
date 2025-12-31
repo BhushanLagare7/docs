@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 
-import { Slider as SliderPrimitive } from "radix-ui"
+import { Slider as SliderPrimitive } from "radix-ui";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 function Slider({
   className,
@@ -19,10 +19,10 @@ function Slider({
       Array.isArray(value)
         ? value
         : Array.isArray(defaultValue)
-          ? defaultValue
-          : [min, max],
+        ? defaultValue
+        : [min, max],
     [value, defaultValue, min, max]
-  )
+  );
 
   return (
     <SliderPrimitive.Root
@@ -32,18 +32,18 @@ function Slider({
       min={min}
       max={max}
       className={cn(
-        "data-vertical:min-h-40 relative flex w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:w-auto data-vertical:flex-col",
+        "flex relative items-center w-full select-none data-vertical:min-h-40 touch-none data-disabled:opacity-50 data-vertical:h-full data-vertical:w-auto data-vertical:flex-col",
         className
       )}
       {...props}
     >
       <SliderPrimitive.Track
         data-slot="slider-track"
-        className="bg-muted rounded-none data-horizontal:h-1 data-horizontal:w-full data-vertical:h-full data-vertical:w-1 bg-muted relative grow overflow-hidden data-horizontal:w-full data-vertical:h-full"
+        className="overflow-hidden relative rounded-none bg-muted data-horizontal:h-1 data-horizontal:w-full data-vertical:h-full data-vertical:w-1 grow"
       >
         <SliderPrimitive.Range
           data-slot="slider-range"
-          className="bg-primary absolute select-none data-horizontal:h-full data-vertical:w-full"
+          className="absolute select-none bg-primary data-horizontal:h-full data-vertical:w-full"
         />
       </SliderPrimitive.Track>
       {Array.from({ length: _values.length }, (_, index) => (
@@ -54,7 +54,7 @@ function Slider({
         />
       ))}
     </SliderPrimitive.Root>
-  )
+  );
 }
 
-export { Slider }
+export { Slider };

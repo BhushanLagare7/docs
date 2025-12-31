@@ -1,31 +1,28 @@
-import { cva, type VariantProps } from "class-variance-authority"
+import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 function Empty({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="empty"
       className={cn(
-        "gap-4 rounded-none border-dashed p-6 flex w-full min-w-0 flex-1 flex-col items-center justify-center text-center text-balance",
+        "flex flex-col flex-1 gap-4 justify-center items-center p-6 w-full min-w-0 text-center rounded-none border-dashed text-balance",
         className
       )}
       {...props}
     />
-  )
+  );
 }
 
 function EmptyHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="empty-header"
-      className={cn(
-        "gap-2 flex max-w-sm flex-col items-center",
-        className
-      )}
+      className={cn("flex flex-col gap-2 items-center max-w-sm", className)}
       {...props}
     />
-  )
+  );
 }
 
 const emptyMediaVariants = cva(
@@ -41,7 +38,7 @@ const emptyMediaVariants = cva(
       variant: "default",
     },
   }
-)
+);
 
 function EmptyMedia({
   className,
@@ -55,7 +52,7 @@ function EmptyMedia({
       className={cn(emptyMediaVariants({ variant, className }))}
       {...props}
     />
-  )
+  );
 }
 
 function EmptyTitle({ className, ...props }: React.ComponentProps<"div">) {
@@ -65,7 +62,7 @@ function EmptyTitle({ className, ...props }: React.ComponentProps<"div">) {
       className={cn("text-sm font-medium", className)}
       {...props}
     />
-  )
+  );
 }
 
 function EmptyDescription({ className, ...props }: React.ComponentProps<"p">) {
@@ -78,7 +75,7 @@ function EmptyDescription({ className, ...props }: React.ComponentProps<"p">) {
       )}
       {...props}
     />
-  )
+  );
 }
 
 function EmptyContent({ className, ...props }: React.ComponentProps<"div">) {
@@ -91,7 +88,7 @@ function EmptyContent({ className, ...props }: React.ComponentProps<"div">) {
       )}
       {...props}
     />
-  )
+  );
 }
 
 export {
@@ -101,4 +98,4 @@ export {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-}
+};
