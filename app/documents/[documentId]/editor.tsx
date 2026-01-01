@@ -7,10 +7,19 @@ import Link from "@tiptap/extension-link";
 import { TaskItem, TaskList } from "@tiptap/extension-list";
 import { TableKit } from "@tiptap/extension-table";
 import TextAlign from "@tiptap/extension-text-align";
-import { Color, FontFamily, TextStyle } from "@tiptap/extension-text-style";
+import {
+  Color,
+  FontFamily,
+  // NOTE: This is not required as we are using our own extension
+  // FontSize,
+  // LineHeight,
+  TextStyle,
+} from "@tiptap/extension-text-style";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
+import { FontSizeExtension } from "@/extensions/font-size";
+import { LineHeightExtension } from "@/extensions/line-height";
 import { useEditorStore } from "@/store/use-editor-store";
 
 export const Editor = () => {
@@ -50,6 +59,8 @@ export const Editor = () => {
     },
     extensions: [
       StarterKit,
+      FontSizeExtension,
+      LineHeightExtension,
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
