@@ -14,6 +14,11 @@ import {
 
 export const LineHeightButton = () => {
   const { editor } = useEditorStore();
+  const currentNode = editor?.state.selection.$from.parent;
+  const currentLineHeight =
+    currentNode?.type.name === "heading"
+      ? editor?.getAttributes("heading")?.lineHeight
+      : editor?.getAttributes("paragraph")?.lineHeight;
 
   return (
     <DropdownMenu>
@@ -32,8 +37,7 @@ export const LineHeightButton = () => {
             onClick={() => editor?.chain().focus().setLineHeight(value).run()}
             className={cn(
               "flex items-center gap-x-2 px-2 py-1 rounded-sm hover:bg-muted-foreground/30",
-              editor?.getAttributes("paragraph")?.lineHeight === value &&
-                "bg-muted-foreground/30"
+              currentLineHeight === value && "bg-muted-foreground/30"
             )}
           >
             <span className="text-sm">{label}</span>
