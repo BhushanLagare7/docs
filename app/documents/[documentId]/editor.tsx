@@ -1,10 +1,12 @@
 "use client";
 
 import ImageResize from "tiptap-extension-resize-image";
+import Highlight from "@tiptap/extension-highlight";
 import Image from "@tiptap/extension-image";
+import Link from "@tiptap/extension-link";
 import { TaskItem, TaskList } from "@tiptap/extension-list";
 import { TableKit } from "@tiptap/extension-table";
-import { FontFamily, TextStyle } from "@tiptap/extension-text-style";
+import { Color, FontFamily, TextStyle } from "@tiptap/extension-text-style";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
@@ -47,6 +49,15 @@ export const Editor = () => {
     },
     extensions: [
       StarterKit,
+      Link.configure({
+        openOnClick: false,
+        autolink: true,
+        defaultProtocol: "https",
+      }),
+      Color,
+      Highlight.configure({
+        multicolor: true,
+      }),
       FontFamily,
       TextStyle,
       TaskList,
