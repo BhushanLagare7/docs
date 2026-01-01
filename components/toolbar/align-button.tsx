@@ -1,5 +1,3 @@
-import { AlignLeftIcon } from "lucide-react";
-
 import { alignments } from "@/constants/toolbar";
 import { useEditorStore } from "@/store/use-editor-store";
 
@@ -15,14 +13,20 @@ import {
 export const AlignButton = () => {
   const { editor } = useEditorStore();
 
+  const currentAlignment =
+    alignments.find(({ value }) => editor?.isActive({ textAlign: value })) ||
+    alignments[0]; // Default to first alignment (Left)
+
+  const CurrentIcon = currentAlignment.icon;
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
-          aria-label="Align"
+          aria-label={`Align ${currentAlignment.label.toLowerCase()}`}
           className="h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-muted-foreground/30 px-1.5 overflow-hidden text-sm"
         >
-          <AlignLeftIcon className="size-4" />
+          <CurrentIcon className="size-4" />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="flex flex-col gap-y-1 p-1">
