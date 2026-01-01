@@ -1,3 +1,10 @@
+import {
+  AlignCenterIcon,
+  AlignJustifyIcon,
+  AlignLeftIcon,
+  AlignRightIcon,
+} from "lucide-react";
+
 export const fonts = [
   { label: "Arial", value: "Arial" },
   { label: "Times New Roman", value: "Times New Roman" },
@@ -13,4 +20,11 @@ export const headings = [
   { label: "Heading 3", value: 3, fontSize: "20px" },
   { label: "Heading 4", value: 4, fontSize: "18px" },
   { label: "Heading 5", value: 5, fontSize: "16px" },
+];
+
+export const alignments = [
+  { label: "Left", value: "left", icon: AlignLeftIcon },
+  { label: "Center", value: "center", icon: AlignCenterIcon },
+  { label: "Right", value: "right", icon: AlignRightIcon },
+  { label: "Justify", value: "justify", icon: AlignJustifyIcon },
 ];
