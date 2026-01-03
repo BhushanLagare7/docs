@@ -71,12 +71,9 @@ export const Ruler = () => {
       onMouseLeave={handleMouseUp}
       role="toolbar"
       aria-label="Document margins"
-      className="flex relative items-end h-6 border-b border-gray-300 select-none print:hidden"
+      className="flex relative items-end h-6 border-b border-gray-300 select-none print:hidden w-[816px] mx-auto"
     >
-      <div
-        id="ruler-container"
-        className="max-w-[816px] mx-auto w-full h-full relative"
-      >
+      <div id="ruler-container" className="relative w-full h-full">
         <Marker
           position={leftMargin}
           isLeft={true}
