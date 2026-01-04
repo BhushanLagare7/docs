@@ -2,7 +2,16 @@
 
 import { ReactNode } from "react";
 
-import { ConvexProvider, ConvexReactClient } from "convex/react";
+import {
+  Authenticated,
+  AuthLoading,
+  ConvexReactClient,
+  Unauthenticated,
+} from "convex/react";
+import { ConvexProviderWithClerk } from "convex/react-clerk";
+import { ClerkProvider, SignIn, useAuth } from "@clerk/clerk-react";
+
+import { FullScreenLoader } from "./fullscreen-loader";
 
 const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
 if (!convexUrl) {
@@ -13,5 +22,21 @@ if (!convexUrl) {
 const convex = new ConvexReactClient(convexUrl);
 
 export function ConvexClientProvider({ children }: { children: ReactNode }) {
-  return <ConvexProvider client={convex}>{children}</ConvexProvider>;
+  return (
+    <ClerkProvider
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!}
+    >
+      <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
+        <Authenticated>{children}</Authenticated>
+        <Unauthenticated>
+          <div className="flex flex-col justify-center items-center min-h-screen">
+            <SignIn />
+          </div>
+        </Unauthenticated>
+        <AuthLoading>
+          <FullScreenLoader label="Auth Loading..." />
+        </AuthLoading>
+      </ConvexProviderWithClerk>
+    </ClerkProvider>
+  );
 }
