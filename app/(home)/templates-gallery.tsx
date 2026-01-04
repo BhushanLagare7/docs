@@ -1,6 +1,13 @@
 "use client";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { useMutation } from "convex/react";
+import { toast } from "sonner";
+
 import { templates } from "@/constants/templates";
+import { api } from "@/convex/_generated/api";
 
 import { cn } from "@/lib/utils";
 
@@ -13,7 +20,28 @@ import {
 } from "@/components/ui/carousel";
 
 export const TemplatesGallery = () => {
-  const isCreating = false;
+  const router = useRouter();
+
+  const [isCreating, setIsCreating] = useState(false);
+
+  const create = useMutation(api.documents.create);
+
+  const onTemplateClick = async (title: string, initialContent: string) => {
+    setIsCreating(true);
+    try {
+      const documentId = await create({
+        title,
+        initialContent,
+      });
+      toast.success("Document created successfully");
+      router.push(`/documents/${documentId}`);
+    } catch (error) {
+      console.error("Failed to create document", error);
+      toast.error("Failed to create document");
+    } finally {
+      setIsCreating(false);
+    }
+  };
 
   return (
     <div className="bg-[#F1F3F4] dark:bg-[#1F1F1F]">
@@ -34,7 +62,8 @@ export const TemplatesGallery = () => {
                 >
                   <button
                     disabled={isCreating}
-                    onClick={() => {}}
+                    // TODO: Add initial content
+                    onClick={() => onTemplateClick(template.label, "")}
                     aria-label={`Create document from ${template.label} template`}
                     style={{
                       backgroundImage: `url(${template.imageUrl})`,
