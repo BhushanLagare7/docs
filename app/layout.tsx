@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Public_Sans } from "next/font/google";
 
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
+import { ConvexClientProvider } from "@/components/ConvexClientProvider";
+
 import "./globals.css";
 
 const publicSans = Public_Sans({ subsets: ["latin"], variable: "--font-sans" });
@@ -33,7 +35,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NuqsAdapter>{children}</NuqsAdapter>
+        <NuqsAdapter>
+          <ConvexClientProvider>{children}</ConvexClientProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );
