@@ -30,10 +30,10 @@ const ErrorPage = ({
           </p>
         </div>
         <div className="flex gap-x-3 justify-center items-center">
-          <Button onClick={reset} className="px-6 font-medium">
+          <Button className="px-6 font-medium" onClick={reset}>
             Try again
           </Button>
-          <Button variant="ghost" className="font-medium" asChild>
+          <Button asChild className="font-medium" variant="ghost">
             <Link href="/">Go back</Link>
           </Button>
         </div>

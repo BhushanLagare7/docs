@@ -34,11 +34,11 @@ export const LineHeightButton = () => {
         {lineHeights.map(({ label, value }) => (
           <DropdownMenuItem
             key={value}
-            onClick={() => editor?.chain().focus().setLineHeight(value).run()}
             className={cn(
               "flex items-center gap-x-2 px-2 py-1 rounded-sm hover:bg-muted-foreground/30",
               currentLineHeight === value && "bg-muted-foreground/30"
             )}
+            onClick={() => editor?.chain().focus().setLineHeight(value).run()}
           >
             <span className="text-sm">{label}</span>
           </DropdownMenuItem>

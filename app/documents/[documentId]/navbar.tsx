@@ -97,7 +97,7 @@ export const Navbar = () => {
     <nav className="flex justify-between items-center">
       <div className="flex gap-2 items-center">
         <Link href="/">
-          <Image src="/logo.svg" alt="Logo" width={36} height={36} />
+          <Image alt="Logo" height={36} src="/logo.svg" width={36} />
         </Link>
         <div className="flex flex-col">
           <DocumentInput />

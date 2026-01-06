@@ -13,12 +13,12 @@ import { Textarea } from "@/components/ui/textarea";
 function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="input-group"
-      role="group"
       className={cn(
         "border-input dark:bg-input/30 has-[[data-slot=input-group-control]:focus-visible]:border-ring has-[[data-slot=input-group-control]:focus-visible]:ring-ring/50 has-[[data-slot][aria-invalid=true]]:ring-destructive/20 has-[[data-slot][aria-invalid=true]]:border-destructive dark:has-[[data-slot][aria-invalid=true]]:ring-destructive/40 has-disabled:bg-input/50 dark:has-disabled:bg-input/80 h-8 rounded-none border transition-colors has-disabled:opacity-50 has-[[data-slot=input-group-control]:focus-visible]:ring-1 has-[[data-slot][aria-invalid=true]]:ring-1 has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=inline-end]]:[&>input]:pr-1.5 has-[>[data-align=inline-start]]:[&>input]:pl-1.5 in-data-[slot=combobox-content]:focus-within:border-inherit in-data-[slot=combobox-content]:focus-within:ring-0 group/input-group relative flex w-full min-w-0 items-center outline-none has-[>textarea]:h-auto",
         className
       )}
+      data-slot="input-group"
+      role="group"
       {...props}
     />
   );
@@ -52,10 +52,10 @@ function InputGroupAddon({
 }: React.ComponentProps<"div"> & VariantProps<typeof inputGroupAddonVariants>) {
   return (
     <div
-      role="group"
-      data-slot="input-group-addon"
-      data-align={align}
       className={cn(inputGroupAddonVariants({ align }), className)}
+      data-align={align}
+      data-slot="input-group-addon"
+      role="group"
       onClick={(e) => {
         if ((e.target as HTMLElement).closest("button")) {
           return;
@@ -94,10 +94,10 @@ function InputGroupButton({
   VariantProps<typeof inputGroupButtonVariants>) {
   return (
     <Button
-      type={type}
-      data-size={size}
-      variant={variant}
       className={cn(inputGroupButtonVariants({ size }), className)}
+      data-size={size}
+      type={type}
+      variant={variant}
       {...props}
     />
   );
@@ -121,11 +121,11 @@ function InputGroupInput({
 }: React.ComponentProps<"input">) {
   return (
     <Input
-      data-slot="input-group-control"
       className={cn(
         "flex-1 bg-transparent rounded-none border-0 ring-0 shadow-none focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent",
         className
       )}
+      data-slot="input-group-control"
       {...props}
     />
   );
@@ -137,11 +137,11 @@ function InputGroupTextarea({
 }: React.ComponentProps<"textarea">) {
   return (
     <Textarea
-      data-slot="input-group-control"
       className={cn(
         "flex-1 py-2 bg-transparent rounded-none border-0 ring-0 shadow-none resize-none focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent",
         className
       )}
+      data-slot="input-group-control"
       {...props}
     />
   );

@@ -20,11 +20,11 @@ export function Threads({ editor }: { editor: Editor | null }) {
         <AnchoredThreads editor={editor} threads={threads} />
       </div>
       <FloatingThreads
+        className="floating-threads"
         editor={editor}
         threads={threads}
-        className="floating-threads"
       />
-      <FloatingComposer editor={editor} className="floating-composer" />
+      <FloatingComposer className="floating-composer" editor={editor} />
     </>
   );
 }

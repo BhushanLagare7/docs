@@ -17,14 +17,14 @@ export const ToolbarButton = ({
 }: ToolbarButtonProps) => {
   return (
     <button
-      onClick={onClick}
       aria-label={label}
       aria-pressed={isActive}
-      title={label}
       className={cn(
         "flex justify-center items-center h-7 text-sm rounded-sm min-w-7 hover:bg-muted-foreground/30",
         isActive && "bg-muted-foreground/30"
       )}
+      title={label}
+      onClick={onClick}
     >
       <Icon className="size-4" />
     </button>

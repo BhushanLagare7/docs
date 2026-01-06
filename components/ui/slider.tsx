@@ -26,31 +26,31 @@ function Slider({
 
   return (
     <SliderPrimitive.Root
-      data-slot="slider"
-      defaultValue={defaultValue}
-      value={value}
-      min={min}
-      max={max}
       className={cn(
         "flex relative items-center w-full select-none data-vertical:min-h-40 touch-none data-disabled:opacity-50 data-vertical:h-full data-vertical:w-auto data-vertical:flex-col",
         className
       )}
+      data-slot="slider"
+      defaultValue={defaultValue}
+      max={max}
+      min={min}
+      value={value}
       {...props}
     >
       <SliderPrimitive.Track
-        data-slot="slider-track"
         className="overflow-hidden relative rounded-none bg-muted data-horizontal:h-1 data-horizontal:w-full data-vertical:h-full data-vertical:w-1 grow"
+        data-slot="slider-track"
       >
         <SliderPrimitive.Range
-          data-slot="slider-range"
           className="absolute select-none bg-primary data-horizontal:h-full data-vertical:w-full"
+          data-slot="slider-range"
         />
       </SliderPrimitive.Track>
       {Array.from({ length: _values.length }, (_, index) => (
         <SliderPrimitive.Thumb
-          data-slot="slider-thumb"
           key={index}
           className="border-ring ring-ring/50 relative size-3 rounded-none border bg-white transition-[color,box-shadow] after:absolute after:-inset-2 hover:ring-1 focus-visible:ring-1 focus-visible:outline-hidden active:ring-1 block shrink-0 select-none disabled:pointer-events-none disabled:opacity-50"
+          data-slot="slider-thumb"
         />
       ))}
     </SliderPrimitive.Root>
