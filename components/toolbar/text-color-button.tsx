@@ -29,7 +29,7 @@ export const TextColorButton = () => {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="p-0 w-fit">
-        <SketchPicker onChange={onChange} color={value} />
+        <SketchPicker color={value} onChange={onChange} />
       </DropdownMenuContent>
     </DropdownMenu>
   );

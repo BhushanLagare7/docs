@@ -8,7 +8,7 @@ interface DocumentIdPageProps {
 }
 
 const DocumentIdPage = async ({ params }: DocumentIdPageProps) => {
-  const { documentId } = await params;
+  await params;
 
   return (
     <div className="min-h-screen bg-custom-1">

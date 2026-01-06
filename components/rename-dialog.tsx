@@ -69,18 +69,18 @@ export const RenameDialog = ({
           </DialogHeader>
           <div className="my-4">
             <Input
+              placeholder="Document Name"
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Document Name"
               onClick={(e) => e.stopPropagation()}
             />
           </div>
           <DialogFooter>
             <Button
+              disabled={isRenaming}
               type="button"
               variant="ghost"
-              disabled={isRenaming}
               onClick={(e) => {
                 e.stopPropagation();
                 setOpen(false);
@@ -89,8 +89,8 @@ export const RenameDialog = ({
               Cancel
             </Button>
             <Button
-              type="submit"
               disabled={isRenaming}
+              type="submit"
               onClick={(e) => e.stopPropagation()}
             >
               Save

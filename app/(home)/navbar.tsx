@@ -10,7 +10,7 @@ export const Navbar = () => {
     <nav className="flex justify-between items-center w-full h-full">
       <div className="flex gap-3 items-center pr-6 shrink-0">
         <Link href="/">
-          <Image src="/logo.svg" alt="Logo" width={36} height={36} />
+          <Image alt="Logo" height={36} src="/logo.svg" width={36} />
         </Link>
         <h3 className="text-xl">Docs</h3>
       </div>

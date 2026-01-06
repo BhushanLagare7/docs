@@ -33,11 +33,11 @@ export const AlignButton = () => {
         {alignments.map(({ label, value, icon: Icon }) => (
           <DropdownMenuItem
             key={value}
-            onClick={() => editor?.chain().focus().setTextAlign(value).run()}
             className={cn(
               "flex items-center gap-x-2 px-2 py-1 rounded-sm hover:bg-muted-foreground/30",
               editor?.isActive({ textAlign: value }) && "bg-muted-foreground/30"
             )}
+            onClick={() => editor?.chain().focus().setTextAlign(value).run()}
           >
             <Icon className="size-4" />
             <span className="text-sm">{label}</span>

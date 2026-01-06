@@ -61,17 +61,17 @@ export const TemplatesGallery = () => {
                   )}
                 >
                   <button
-                    disabled={isCreating}
-                    // TODO: Add initial content
-                    onClick={() => onTemplateClick(template.label, "")}
                     aria-label={`Create document from ${template.label} template`}
+                    className="flex flex-col gap-y-4 justify-center items-center rounded-sm border transition size-full hover:border-primary hover:bg-blue-50 dark:hover:bg-blue-900 bg-background"
+                    disabled={isCreating}
                     style={{
                       backgroundImage: `url(${template.imageUrl})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
                     }}
-                    className="flex flex-col gap-y-4 justify-center items-center rounded-sm border transition size-full hover:border-primary hover:bg-blue-50 dark:hover:bg-blue-900 bg-background"
+                    // TODO: Add initial content
+                    onClick={() => onTemplateClick(template.label, "")}
                   />
                   <p className="text-sm font-medium truncate">
                     {template.label}

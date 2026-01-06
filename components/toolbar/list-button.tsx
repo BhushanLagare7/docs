@@ -43,11 +43,11 @@ export const ListButton = () => {
         {lists.map(({ label, icon: Icon, isActive, onClick }) => (
           <DropdownMenuItem
             key={label}
-            onClick={onClick}
             className={cn(
               "flex items-center gap-x-2 px-2 py-1 rounded-sm hover:bg-muted-foreground/30",
               isActive && "bg-muted-foreground/30"
             )}
+            onClick={onClick}
           >
             <Icon className="size-4" />
             <span className="text-sm">{label}</span>

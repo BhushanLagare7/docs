@@ -56,34 +56,34 @@ export const FontSizeButton = () => {
   return (
     <div className="flex items-center gap-x-0.5">
       <button
-        onClick={decrement}
         className="flex justify-center items-center w-7 h-7 rounded-sm shrink-0 hover:bg-muted-foreground/30"
+        onClick={decrement}
       >
         <MinusIcon className="size-4" />
       </button>
       {isEditing ? (
         <input
+          className="w-10 h-7 text-sm text-center bg-transparent rounded-sm border border-muted-foreground/50 focus:outline-none focus:ring-0"
           type="text"
           value={inputValue}
-          onChange={handleInputChange}
           onBlur={handleInputBlur}
+          onChange={handleInputChange}
           onKeyDown={handleKeyDown}
-          className="w-10 h-7 text-sm text-center bg-transparent rounded-sm border border-muted-foreground/50 focus:outline-none focus:ring-0"
         />
       ) : (
         <button
+          className="w-10 h-7 text-sm text-center bg-transparent rounded-sm border cursor-text border-muted-foreground/50"
           onClick={() => {
             setIsEditing(true);
             setFontSize(currentFontSize);
           }}
-          className="w-10 h-7 text-sm text-center bg-transparent rounded-sm border cursor-text border-muted-foreground/50"
         >
           {currentFontSize}
         </button>
       )}
       <button
-        onClick={increment}
         className="flex justify-center items-center w-7 h-7 rounded-sm shrink-0 hover:bg-muted-foreground/30"
+        onClick={increment}
       >
         <PlusIcon className="size-4" />
       </button>

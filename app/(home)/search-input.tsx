@@ -35,27 +35,27 @@ export const SearchInput = () => {
     <div className="flex flex-1 justify-center items-center">
       <form className="relative max-w-[720px] w-full" onSubmit={handleSubmit}>
         <Input
-          placeholder="Search"
+          ref={inputRef}
           className="px-14 w-full border-none md:text-base placeholder:text-muted-foreground focus-visible:shadow-[0_1px_1px_0_rgba(65,69,73,0.3),0_1px_3px_1px_rgba(65,69,73,0.15)] bg-[#F0F4F8] dark:bg-[#1D2125] rounded-full h-[48px] focus-visible:ring-0 focus-visible:bg-background"
+          placeholder="Search"
           value={value}
           onChange={handleChange}
-          ref={inputRef}
         />
         <Button
           aria-label="Search"
+          className="absolute left-3 top-1/2 -translate-y-1/2 [&_svg]:size-5 rounded-full"
+          size="icon"
           type="submit"
           variant="ghost"
-          size="icon"
-          className="absolute left-3 top-1/2 -translate-y-1/2 [&_svg]:size-5 rounded-full"
         >
           <SearchIcon className="text-muted-foreground" />
         </Button>
         {value && (
           <Button
+            className="absolute right-3 top-1/2 -translate-y-1/2 [&_svg]:size-5 rounded-full cursor-pointer"
+            size="icon"
             type="button"
             variant="ghost"
-            size="icon"
-            className="absolute right-3 top-1/2 -translate-y-1/2 [&_svg]:size-5 rounded-full cursor-pointer"
             onClick={handleClear}
           >
             <XIcon className="text-muted-foreground" />

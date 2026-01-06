@@ -13,10 +13,10 @@ import { Button } from "@/components/ui/button";
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
     <nav
-      role="navigation"
       aria-label="pagination"
-      data-slot="pagination"
       className={cn("flex justify-center mx-auto w-full", className)}
+      data-slot="pagination"
+      role="navigation"
       {...props}
     />
   );
@@ -28,8 +28,8 @@ function PaginationContent({
 }: React.ComponentProps<"ul">) {
   return (
     <ul
-      data-slot="pagination-content"
       className={cn("gap-0.5 flex items-center", className)}
+      data-slot="pagination-content"
       {...props}
     />
   );
@@ -53,14 +53,14 @@ function PaginationLink({
   return (
     <Button
       asChild
-      variant={isActive ? "outline" : "ghost"}
-      size={size}
       className={cn(className)}
+      size={size}
+      variant={isActive ? "outline" : "ghost"}
     >
       <a
         aria-current={isActive ? "page" : undefined}
-        data-slot="pagination-link"
         data-active={isActive}
+        data-slot="pagination-link"
         {...props}
       />
     </Button>
@@ -74,8 +74,8 @@ function PaginationPrevious({
   return (
     <PaginationLink
       aria-label="Go to previous page"
-      size="default"
       className={cn("pl-1.5!", className)}
+      size="default"
       {...props}
     >
       <ChevronLeftIcon data-icon="inline-start" />
@@ -91,8 +91,8 @@ function PaginationNext({
   return (
     <PaginationLink
       aria-label="Go to next page"
-      size="default"
       className={cn("pr-1.5!", className)}
+      size="default"
       {...props}
     >
       <span className="hidden sm:block">Next</span>
@@ -108,11 +108,11 @@ function PaginationEllipsis({
   return (
     <span
       aria-hidden
-      data-slot="pagination-ellipsis"
       className={cn(
         "size-8 [&_svg:not([class*='size-'])]:size-4 flex items-center justify-center",
         className
       )}
+      data-slot="pagination-ellipsis"
       {...props}
     >
       <MoreHorizontalIcon />

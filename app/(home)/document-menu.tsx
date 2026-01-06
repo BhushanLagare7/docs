@@ -32,19 +32,19 @@ export const DocumentMenu = ({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="ghost"
-          size="icon"
-          className="rounded-full"
           aria-label="Document actions"
+          className="rounded-full"
+          size="icon"
+          variant="ghost"
         >
           <MoreVerticalIcon className="size-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-fit" align="end">
+      <DropdownMenuContent align="end" className="w-fit">
         <RenameDialog documentId={documentId} initialTitle={title}>
           <DropdownMenuItem
-            onSelect={(e) => e.preventDefault()}
             onClick={(e) => e.stopPropagation()}
+            onSelect={(e) => e.preventDefault()}
           >
             <FilePenIcon className="mr-2 size-4" />
             Rename
@@ -53,8 +53,8 @@ export const DocumentMenu = ({
         <RemoveDialog documentId={documentId}>
           <DropdownMenuItem
             variant="destructive"
-            onSelect={(e) => e.preventDefault()}
             onClick={(e) => e.stopPropagation()}
+            onSelect={(e) => e.preventDefault()}
           >
             <TrashIcon className="mr-2 size-4" />
             Delete

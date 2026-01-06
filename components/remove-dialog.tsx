@@ -61,9 +61,9 @@ export const RemoveDialog = ({ documentId, children }: RemoveDialogProps) => {
             Cancel
           </AlertDialogCancel>
           <AlertDialogAction
-            onClick={handleRemove}
             disabled={isRemoving}
             variant="destructive"
+            onClick={handleRemove}
           >
             Delete
           </AlertDialogAction>

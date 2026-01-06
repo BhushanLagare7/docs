@@ -39,11 +39,11 @@ function DialogOverlay({
 }: React.ComponentProps<typeof DialogPrimitive.Overlay>) {
   return (
     <DialogPrimitive.Overlay
-      data-slot="dialog-overlay"
       className={cn(
         "isolate fixed inset-0 z-50 duration-100 data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 bg-black/10 supports-backdrop-filter:backdrop-blur-xs",
         className
       )}
+      data-slot="dialog-overlay"
       {...props}
     />
   );
@@ -61,20 +61,20 @@ function DialogContent({
     <DialogPortal>
       <DialogOverlay />
       <DialogPrimitive.Content
-        data-slot="dialog-content"
         className={cn(
           "bg-background data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 ring-foreground/10 grid max-w-[calc(100%-2rem)] gap-4 rounded-none p-4 text-xs/relaxed ring-1 duration-100 sm:max-w-sm fixed top-1/2 left-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2",
           className
         )}
+        data-slot="dialog-content"
         {...props}
       >
         {children}
         {showCloseButton && (
-          <DialogPrimitive.Close data-slot="dialog-close" asChild>
+          <DialogPrimitive.Close asChild data-slot="dialog-close">
             <Button
-              variant="ghost"
               className="absolute top-2 right-2"
               size="icon-sm"
+              variant="ghost"
             >
               <XIcon />
               <span className="sr-only">Close</span>
@@ -89,8 +89,8 @@ function DialogContent({
 function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      data-slot="dialog-header"
       className={cn("flex flex-col gap-1 text-left", className)}
+      data-slot="dialog-header"
       {...props}
     />
   );
@@ -106,11 +106,11 @@ function DialogFooter({
 }) {
   return (
     <div
-      data-slot="dialog-footer"
       className={cn(
         "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
         className
       )}
+      data-slot="dialog-footer"
       {...props}
     >
       {children}
@@ -129,8 +129,8 @@ function DialogTitle({
 }: React.ComponentProps<typeof DialogPrimitive.Title>) {
   return (
     <DialogPrimitive.Title
-      data-slot="dialog-title"
       className={cn("text-sm font-medium", className)}
+      data-slot="dialog-title"
       {...props}
     />
   );
@@ -142,11 +142,11 @@ function DialogDescription({
 }: React.ComponentProps<typeof DialogPrimitive.Description>) {
   return (
     <DialogPrimitive.Description
-      data-slot="dialog-description"
       className={cn(
         "text-muted-foreground *:[a]:hover:text-foreground text-xs/relaxed *:[a]:underline *:[a]:underline-offset-3",
         className
       )}
+      data-slot="dialog-description"
       {...props}
     />
   );

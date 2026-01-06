@@ -109,31 +109,31 @@ export const Toolbar = () => {
 
   return (
     <div
-      role="toolbar"
       aria-label="Editor formatting toolbar"
       className="px-2.5 py-2 rounded-[24px] min-h-[40px] flex items-center gap-x-0.5 overflow-x-auto bg-custom-4 dark:bg-custom-3"
+      role="toolbar"
     >
       {sections[0].map((item) => (
         <ToolbarButton key={item.label} {...item} />
       ))}
       <Separator
-        orientation="vertical"
         className="h-6 bg-neutral-300 dark:bg-neutral-500"
+        orientation="vertical"
       />
       <FontFamilyButton />
       <Separator
-        orientation="vertical"
         className="h-6 bg-neutral-300 dark:bg-neutral-500"
+        orientation="vertical"
       />
       <HeadingLevelButton />
       <Separator
-        orientation="vertical"
         className="h-6 bg-neutral-300 dark:bg-neutral-500"
+        orientation="vertical"
       />
       <FontSizeButton />
       <Separator
-        orientation="vertical"
         className="h-6 bg-neutral-300 dark:bg-neutral-500"
+        orientation="vertical"
       />
       {sections[1].map((item) => (
         <ToolbarButton key={item.label} {...item} />
@@ -141,8 +141,8 @@ export const Toolbar = () => {
       <TextColorButton />
       <HighlightColorButton />
       <Separator
-        orientation="vertical"
         className="h-6 bg-neutral-300 dark:bg-neutral-500"
+        orientation="vertical"
       />
       <LinkButton />
       <ImageButton />

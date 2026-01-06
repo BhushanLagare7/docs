@@ -43,6 +43,7 @@ export const HeadingLevelButton = () => {
                 editor?.isActive("heading", { level: value })) &&
                 "bg-muted-foreground/30"
             )}
+            style={{ fontSize }}
             onClick={() => {
               if (value === 0) {
                 editor?.chain().focus().setParagraph().run();
@@ -54,7 +55,6 @@ export const HeadingLevelButton = () => {
                   .run();
               }
             }}
-            style={{ fontSize }}
           >
             {label}
           </DropdownMenuItem>

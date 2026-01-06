@@ -66,27 +66,27 @@ export const Ruler = () => {
   return (
     <div
       ref={rulerRef}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      role="toolbar"
       aria-label="Document margins"
       className="flex relative items-end h-6 border-b border-gray-300 select-none print:hidden w-[816px] mx-auto"
+      role="toolbar"
+      onMouseLeave={handleMouseUp}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
     >
-      <div id="ruler-container" className="relative w-full h-full">
+      <div className="relative w-full h-full" id="ruler-container">
         <Marker
-          position={leftMargin}
-          isLeft={true}
           isDragging={isDraggingLeft}
-          onMouseDown={handleLeftMouseDown}
+          isLeft={true}
+          position={leftMargin}
           onDoubleClick={handleLeftDoubleClick}
+          onMouseDown={handleLeftMouseDown}
         />
         <Marker
-          position={rightMargin}
-          isLeft={false}
           isDragging={isDraggingRight}
-          onMouseDown={handleRightMouseDown}
+          isLeft={false}
+          position={rightMargin}
           onDoubleClick={handleRightDoubleClick}
+          onMouseDown={handleRightMouseDown}
         />
         <div className="absolute inset-x-0 bottom-0 h-full">
           <div className="relative h-full w-[816px]">
@@ -142,8 +142,8 @@ const Marker = ({
     <div
       className="absolute top-0 -ml-2 w-4 h-full cursor-ew-resize z-5 group"
       style={{ [isLeft ? "left" : "right"]: `${position}px` }}
-      onMouseDown={onMouseDown}
       onDoubleClick={onDoubleClick}
+      onMouseDown={onMouseDown}
     >
       <FaCaretDown className="absolute top-0 left-1/2 h-full transform -translate-x-1/2 fill-primary" />
       <div

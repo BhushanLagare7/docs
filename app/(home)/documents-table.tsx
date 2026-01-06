@@ -46,8 +46,8 @@ export const DocumentsTable = ({
             <TableBody>
               <TableRow className="border-none hover:bg-transparent">
                 <TableCell
-                  colSpan={4}
                   className="h-24 text-center text-muted-foreground"
+                  colSpan={4}
                 >
                   No documents found
                 </TableCell>
@@ -68,10 +68,10 @@ export const DocumentsTable = ({
             <LoaderIcon className="animate-spin text-muted-foreground size-5" />
           ) : (
             <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => loadMore(5)}
               disabled={status !== "CanLoadMore"}
+              size="sm"
+              variant="ghost"
+              onClick={() => loadMore(5)}
             >
               {status === "CanLoadMore" ? "Load more" : "End of results"}
             </Button>
