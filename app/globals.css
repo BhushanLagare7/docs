@@ -336,3 +336,7 @@
     display: none;
   }
 }
+
+div[data-radix-menu-content] {
+  z-index: 50 !important;
+}
