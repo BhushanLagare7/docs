@@ -11,6 +11,11 @@
   "dependencies": {
     "@base-ui/react": "^1.0.0",
     "@clerk/nextjs": "^6.36.5",
+    "@liveblocks/client": "^3.12.1",
+    "@liveblocks/node": "^3.12.1",
+    "@liveblocks/react": "^3.12.1",
+    "@liveblocks/react-tiptap": "^3.12.1",
+    "@liveblocks/react-ui": "^3.12.1",
     "@tiptap/extension-heading": "^3.14.0",
     "@tiptap/extension-highlight": "^3.14.0",
     "@tiptap/extension-image": "^3.14.0",
