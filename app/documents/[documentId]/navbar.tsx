@@ -39,6 +39,7 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar";
 
+import { Avatars } from "./avatars";
 import { DocumentInput } from "./document-input";
 
 export const Navbar = () => {
@@ -263,7 +264,8 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="flex items-center gap-3 pl-6">
+      <div className="flex gap-3 items-center pl-6">
+        <Avatars />
         <OrganizationSwitcher
           afterCreateOrganizationUrl="/"
           afterLeaveOrganizationUrl="/"

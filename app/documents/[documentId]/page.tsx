@@ -11,17 +11,17 @@ const DocumentIdPage = async ({ params }: DocumentIdPageProps) => {
   await params;
 
   return (
-    <div className="min-h-screen bg-custom-1">
-      <div className="flex fixed top-0 right-0 left-0 z-10 flex-col gap-y-2 px-4 pt-2 bg-custom-1 print:hidden">
-        <Navbar />
-        <Toolbar />
-      </div>
-      <div className="pt-[114px] print:p-0">
-        <Room>
+    <Room>
+      <div className="min-h-screen bg-custom-1">
+        <div className="flex fixed top-0 right-0 left-0 z-10 flex-col gap-y-2 px-4 pt-2 bg-custom-1 print:hidden">
+          <Navbar />
+          <Toolbar />
+        </div>
+        <div className="pt-[114px] print:p-0">
           <Editor />
-        </Room>
+        </div>
       </div>
-    </div>
+    </Room>
   );
 };
 
