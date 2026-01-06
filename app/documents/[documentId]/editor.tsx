@@ -1,6 +1,7 @@
 "use client";
 
 import ImageResize from "tiptap-extension-resize-image";
+import { useStorage } from "@liveblocks/react";
 import {
   FloatingToolbar,
   useLiveblocksExtension,
@@ -30,6 +31,9 @@ import { Ruler } from "./ruler";
 import { Threads } from "./Threads";
 
 export const Editor = () => {
+  const leftMargin = useStorage((storage) => storage.leftMargin);
+  const rightMargin = useStorage((storage) => storage.rightMargin);
+
   const liveblocks = useLiveblocksExtension();
   const { setEditor } = useEditorStore();
 
@@ -60,7 +64,7 @@ export const Editor = () => {
     },
     editorProps: {
       attributes: {
-        style: "padding-left: 56px; padding-right: 56px",
+        style: `padding-left: ${leftMargin ?? 56}px; padding-right: ${rightMargin ?? 56}px`,
         class:
           "focus:outline-none print:border-0 bg-background border border-custom-3 flex flex-col min-h-[1054px] w-[816px] pt-10 pr-14 pb-10 cursor-text",
       },
