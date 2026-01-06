@@ -66,8 +66,8 @@ export const Editor = () => {
       },
     },
     extensions: [
-      liveblocks,
       StarterKit,
+      liveblocks,
       FontSizeExtension,
       LineHeightExtension,
       TextAlign.configure({

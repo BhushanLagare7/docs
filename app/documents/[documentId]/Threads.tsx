@@ -9,6 +9,11 @@ import { Editor } from "@tiptap/react";
 export function Threads({ editor }: { editor: Editor | null }) {
   const { threads } = useThreads({ query: { resolved: false } });
 
+  // Guard against null editor to prevent passing invalid instance to Liveblocks components
+  if (!editor) {
+    return null;
+  }
+
   return (
     <>
       <div className="anchored-threads">
