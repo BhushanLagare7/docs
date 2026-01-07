@@ -5,6 +5,8 @@ import { Liveblocks } from "@liveblocks/node";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
+import { generateUserColor } from "@/lib/user-colors";
+
 export async function POST(req: Request) {
   // Validate environment variables
   const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
@@ -81,17 +83,12 @@ export async function POST(req: Request) {
 
   const name =
     user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous";
-  const nameToNumber = name
-    .split("")
-    .reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  const hue = Math.abs(nameToNumber) % 360;
-  const color = `hsl(${hue}, 80%, 60%)`;
 
   const session = liveblocks.prepareSession(user.id, {
     userInfo: {
       name,
       avatar: user.imageUrl,
-      color,
+      color: generateUserColor(user.id),
     },
   });
 
