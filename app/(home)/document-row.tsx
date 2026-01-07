@@ -1,3 +1,9 @@
+/**
+ * @file Document row component for displaying a single document in the documents table.
+ * Shows document title, ownership type, creation date, and action menu.
+ * @module app/(home)/document-row
+ */
+
 import { SiGoogledocs } from "react-icons/si";
 import { useRouter } from "next/navigation";
 
@@ -10,10 +16,28 @@ import { TableCell, TableRow } from "@/components/ui/table";
 
 import { DocumentMenu } from "./document-menu";
 
+/**
+ * Props for the DocumentRow component.
+ * @interface DocumentRowProps
+ * @property {Doc<"documents">} document - The document data to display
+ */
 interface DocumentRowProps {
   document: Doc<"documents">;
 }
 
+/**
+ * A table row component that displays a single document's information.
+ * Clicking the row navigates to the document editor page.
+ * Displays the document icon, title, ownership type (personal/organization),
+ * creation date, and an action menu.
+ *
+ * @param {DocumentRowProps} props - The component props
+ * @param {Doc<"documents">} props.document - The document data to display
+ * @returns {JSX.Element} The rendered table row component
+ *
+ * @example
+ * <DocumentRow document={documentData} />
+ */
 export const DocumentRow = ({ document }: DocumentRowProps) => {
   const router = useRouter();
 

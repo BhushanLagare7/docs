@@ -1,6 +1,16 @@
+/**
+ * @file Liveblocks TypeScript configuration.
+ * Defines global types for Liveblocks real-time collaboration features.
+ * @module liveblocks.config
+ */
+
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 // Define Liveblocks types for your application
 // https://liveblocks.io/docs/api-reference/liveblocks-react#Typing-your-data
+/**
+ * Global Liveblocks type definitions for the application.
+ * Configures presence, storage, user metadata, and events.
+ */
 declare global {
   interface Liveblocks {
     // Each user's Presence, for useMyPresence, useOthers, etc.

@@ -1,3 +1,9 @@
+/**
+ * @file Main document component wrapper.
+ * Combines the room provider, navbar, toolbar, and editor into the complete document view.
+ * @module app/documents/[documentId]/document
+ */
+
 "use client";
 
 import { Preloaded, usePreloadedQuery } from "convex/react";
@@ -9,10 +15,24 @@ import { Navbar } from "./navbar";
 import { Room } from "./room";
 import { Toolbar } from "./toolbar";
 
+/**
+ * Props for the Document component.
+ * @interface DocumentProps
+ * @property {Preloaded<typeof api.documents.getById>} preloadedDocument - Preloaded document data from server
+ */
 interface DocumentProps {
   preloadedDocument: Preloaded<typeof api.documents.getById>;
 }
 
+/**
+ * The main document view component.
+ * Wraps the entire document editing experience with the Liveblocks room provider
+ * and renders the navigation bar, toolbar, and editor.
+ *
+ * @param {DocumentProps} props - The component props
+ * @param {Preloaded<typeof api.documents.getById>} props.preloadedDocument - Preloaded document data
+ * @returns {JSX.Element} The rendered document view
+ */
 export const Document = ({ preloadedDocument }: DocumentProps) => {
   const document = usePreloadedQuery(preloadedDocument);
 

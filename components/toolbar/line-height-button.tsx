@@ -1,3 +1,9 @@
+/**
+ * @file Line height selection button for the editor toolbar.
+ * Provides a dropdown to select line height values.
+ * @module components/toolbar/line-height-button
+ */
+
 import { ListCollapseIcon } from "lucide-react";
 
 import { lineHeights } from "@/constants/toolbar";
@@ -12,6 +18,12 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
+/**
+ * A dropdown button component for line height selection.
+ * Displays available line height options and highlights the current selection.
+ *
+ * @returns {JSX.Element} The rendered line height button with dropdown
+ */
 export const LineHeightButton = () => {
   const { editor } = useEditorStore();
   const currentNode = editor?.state.selection.$from.parent;

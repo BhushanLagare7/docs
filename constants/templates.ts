@@ -1,3 +1,16 @@
+/**
+ * @file Document template definitions.
+ * Provides predefined templates for new documents.
+ * @module constants/templates
+ */
+
+/**
+ * Array of document templates available for creating new documents.
+ * Each template includes an ID, label, preview image URL, and initial HTML content.
+ *
+ * @constant
+ * @type {Array<{id: string, label: string, imageUrl: string, initialContent: string}>}
+ */
 export const templates = [
   {
     id: "blank",

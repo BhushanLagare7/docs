@@ -1,3 +1,10 @@
+/**
+ * @file Tiptap editor component with real-time collaboration.
+ * Configures and renders the rich text editor with Liveblocks integration,
+ * custom extensions, and collaborative features.
+ * @module app/documents/[documentId]/editor
+ */
+
 "use client";
 
 import ImageResize from "tiptap-extension-resize-image";
@@ -31,10 +38,29 @@ import { useEditorStore } from "@/store/use-editor-store";
 import { Ruler } from "./ruler";
 import { Threads } from "./Threads";
 
+/**
+ * Props for the Editor component.
+ * @interface EditorProps
+ * @property {string | undefined} initialContent - Initial content to populate the editor with
+ */
 interface EditorProps {
   initialContent: string | undefined;
 }
 
+/**
+ * A rich text editor component with real-time collaboration support.
+ * Features include:
+ * - Liveblocks integration for real-time collaborative editing
+ * - Custom font size and line height extensions
+ * - Text formatting (bold, italic, underline, highlighting)
+ * - Lists, tables, images, and links
+ * - Collaborative comments via threads
+ * - Adjustable document margins via ruler
+ *
+ * @param {EditorProps} props - The component props
+ * @param {string | undefined} props.initialContent - Initial content for the editor
+ * @returns {JSX.Element} The rendered editor component
+ */
 export const Editor = ({ initialContent }: EditorProps) => {
   const leftMargin =
     useStorage((storage) => storage.leftMargin) ?? LEFT_MARGIN_DEFAULT;
@@ -49,27 +75,65 @@ export const Editor = ({ initialContent }: EditorProps) => {
 
   const editor = useEditor({
     autofocus: true,
+    /**
+     *
+     * @param root0
+     * @param root0.editor
+     */
     onCreate: ({ editor }) => {
       setEditor(editor);
     },
+    /**
+     *
+     */
     onDestroy: () => {
       setEditor(null);
     },
+    /**
+     *
+     * @param root0
+     * @param root0.editor
+     */
     onUpdate: ({ editor }) => {
       setEditor(editor);
     },
+    /**
+     *
+     * @param root0
+     * @param root0.editor
+     */
     onSelectionUpdate: ({ editor }) => {
       setEditor(editor);
     },
+    /**
+     *
+     * @param root0
+     * @param root0.editor
+     */
     onTransaction: ({ editor }) => {
       setEditor(editor);
     },
+    /**
+     *
+     * @param root0
+     * @param root0.editor
+     */
     onFocus: ({ editor }) => {
       setEditor(editor);
     },
+    /**
+     *
+     * @param root0
+     * @param root0.editor
+     */
     onBlur: ({ editor }) => {
       setEditor(editor);
     },
+    /**
+     *
+     * @param root0
+     * @param root0.editor
+     */
     onContentError: ({ editor }) => {
       setEditor(editor);
     },

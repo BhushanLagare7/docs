@@ -1,3 +1,9 @@
+/**
+ * @file Navigation bar component for the document editor page.
+ * Provides file operations, editing controls, and user management features.
+ * @module app/documents/[documentId]/navbar
+ */
+
 "use client";
 
 import { BsFilePdf } from "react-icons/bs";
@@ -50,16 +56,41 @@ import { Avatars } from "./avatars";
 import { DocumentInput } from "./document-input";
 import { Inbox } from "./inbox";
 
+/**
+ * Props for the Navbar component.
+ * @interface NavbarProps
+ * @property {Doc<"documents">} data - The document data object
+ */
 interface NavbarProps {
   data: Doc<"documents">;
 }
 
+/**
+ * Navigation bar component for the document editor.
+ * Provides comprehensive document management features including:
+ * - File menu (save, new document, rename, remove, print)
+ * - Edit menu (undo, redo)
+ * - Insert menu (tables)
+ * - Format menu (text styling)
+ * - User avatars and inbox notifications
+ * - Organization switcher and user button
+ *
+ * @param {NavbarProps} props - The component props
+ * @param {Doc<"documents">} props.data - The document data object
+ * @returns {JSX.Element} The rendered navigation bar
+ */
 export const Navbar = ({ data }: NavbarProps) => {
   const router = useRouter();
   const { editor } = useEditorStore();
 
   const mutation = useMutation(api.documents.create);
 
+  /**
+   * Creates a new untitled document and navigates to it.
+   *
+   * @async
+   * @returns {Promise<void>}
+   */
   const onNewDocument = async () => {
     try {
       const documentId = await mutation({
@@ -74,6 +105,13 @@ export const Navbar = ({ data }: NavbarProps) => {
     }
   };
 
+  /**
+   * Inserts a table with the specified dimensions into the editor.
+   *
+   * @param {Object} dimensions - The table dimensions
+   * @param {number} dimensions.rows - Number of rows
+   * @param {number} dimensions.cols - Number of columns
+   */
   const insertTable = ({ rows, cols }: { rows: number; cols: number }) => {
     editor
       ?.chain()
@@ -82,6 +120,12 @@ export const Navbar = ({ data }: NavbarProps) => {
       .run();
   };
 
+  /**
+   * Downloads a blob as a file with the specified filename.
+   *
+   * @param {Blob} blob - The blob to download
+   * @param {string} fileName - The name for the downloaded file
+   */
   const onDownload = (blob: Blob, fileName: string) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -91,6 +135,9 @@ export const Navbar = ({ data }: NavbarProps) => {
     URL.revokeObjectURL(url);
   };
 
+  /**
+   * Saves the document content as a JSON file.
+   */
   const onSaveJson = () => {
     if (!editor) return;
 
@@ -99,6 +146,9 @@ export const Navbar = ({ data }: NavbarProps) => {
     onDownload(blob, `${data.title}.json`);
   };
 
+  /**
+   * Saves the document content as an HTML file.
+   */
   const onSaveHtml = () => {
     if (!editor) return;
 
@@ -107,6 +157,9 @@ export const Navbar = ({ data }: NavbarProps) => {
     onDownload(blob, `${data.title}.html`);
   };
 
+  /**
+   * Saves the document content as a plain text file.
+   */
   const onSaveText = () => {
     if (!editor) return;
 
@@ -115,6 +168,9 @@ export const Navbar = ({ data }: NavbarProps) => {
     onDownload(blob, `${data.title}.txt`);
   };
 
+  /**
+   * Saves the document content as a PDF file.
+   */
   const onSavePdf = () => {
     if (!editor) return;
 

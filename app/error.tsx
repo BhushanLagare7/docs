@@ -1,3 +1,9 @@
+/**
+ * @file Global error boundary page component.
+ * Displays a user-friendly error message with recovery options.
+ * @module app/error
+ */
+
 "use client";
 
 import Link from "next/link";
@@ -6,6 +12,15 @@ import { AlertTriangleIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
+/**
+ * Error page component displayed when an unhandled error occurs.
+ * Shows an error message with options to retry or navigate back home.
+ *
+ * @param {Object} props - The component props
+ * @param {Error & { digest?: string }} props.error - The error object containing message and optional digest
+ * @param {function} props.reset - Function to reset the error boundary and retry rendering
+ * @returns {JSX.Element} The rendered error page
+ */
 const ErrorPage = ({
   error,
   reset,

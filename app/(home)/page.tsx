@@ -1,3 +1,9 @@
+/**
+ * @file Home page component that displays the main document dashboard.
+ * Shows the navigation bar, template gallery, and paginated documents table.
+ * @module app/(home)/page
+ */
+
 "use client";
 
 import { usePaginatedQuery } from "convex/react";
@@ -10,6 +16,17 @@ import { DocumentsTable } from "./documents-table";
 import { Navbar } from "./navbar";
 import { TemplatesGallery } from "./templates-gallery";
 
+/**
+ * The main home page component for the application.
+ * Fetches and displays documents with pagination support, includes a search
+ * feature via URL parameters, and shows available document templates.
+ *
+ * @returns {JSX.Element} The rendered home page component
+ *
+ * @example
+ * // This component is used as the default export for the home route
+ * export default Page;
+ */
 const Page = () => {
   const [search] = useSearchParam();
   const { results, status, loadMore } = usePaginatedQuery(

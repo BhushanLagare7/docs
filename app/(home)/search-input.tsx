@@ -1,3 +1,9 @@
+/**
+ * @file Search input component for filtering documents.
+ * Provides a search form with submit and clear functionality.
+ * @module app/(home)/search-input
+ */
+
 "use client";
 
 import { useRef, useState } from "react";
@@ -9,22 +15,48 @@ import { Input } from "@/components/ui/input";
 
 import { useSearchParam } from "@/hooks/use-search-param";
 
+/**
+ * A search input component for filtering documents.
+ * Uses URL search parameters to persist search state and provides
+ * a styled input with search and clear buttons.
+ *
+ * @returns {JSX.Element} The rendered search input component
+ *
+ * @example
+ * <SearchInput />
+ */
 export const SearchInput = () => {
   const [search, setSearch] = useSearchParam();
   const [value, setValue] = useState<string>(search);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
+  /**
+   * Handles input value changes.
+   * Updates the local value state without triggering a search.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} e - The change event from the input
+   */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
+  /**
+   * Clears the search input and resets the search parameter.
+   * Blurs the input field after clearing.
+   */
   const handleClear = () => {
     setValue("");
     inputRef.current?.blur();
     setSearch("");
   };
 
+  /**
+   * Handles form submission.
+   * Updates the URL search parameter with the current value and blurs the input.
+   *
+   * @param {React.FormEvent<HTMLFormElement>} e - The form submit event
+   */
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearch(value);

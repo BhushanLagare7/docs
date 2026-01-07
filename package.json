@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --config eslint.config.mjs --fix"
+    "docs:generate": "typedoc --out docs-gen",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --config eslint.config.mjs --fix",
+    "lint:docs": "eslint . --ext .js,.jsx,.ts,.tsx --config eslint.config.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",

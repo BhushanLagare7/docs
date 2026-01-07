@@ -1,3 +1,9 @@
+/**
+ * @file Text alignment button component for the editor toolbar.
+ * Provides a dropdown menu to select text alignment (left, center, right, justify).
+ * @module components/toolbar/align-button
+ */
+
 import { alignments } from "@/constants/toolbar";
 import { useEditorStore } from "@/store/use-editor-store";
 
@@ -10,6 +16,13 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
+/**
+ * A dropdown button component for text alignment control.
+ * Displays the current alignment icon and provides options for
+ * left, center, right, and justify alignment.
+ *
+ * @returns {JSX.Element} The rendered alignment button with dropdown
+ */
 export const AlignButton = () => {
   const { editor } = useEditorStore();
 

@@ -1,3 +1,10 @@
+/**
+ * @file Liveblocks room provider component.
+ * Wraps children with Liveblocks real-time collaboration context including
+ * authentication, user resolution, and storage initialization.
+ * @module app/documents/[documentId]/room
+ */
+
 "use client";
 
 import { ReactNode, useEffect, useState } from "react";
@@ -17,14 +24,37 @@ import { FullScreenLoader } from "@/components/fullscreen-loader";
 
 import { getDocuments, getUsers } from "./actions";
 
+/**
+ * User object type for Liveblocks integration.
+ * @typedef {Object} User
+ * @property {string} id - Unique user identifier
+ * @property {string} name - User display name
+ * @property {string} avatar - URL to user's avatar image
+ * @property {string} color - User's assigned color for collaboration
+ */
 type User = { id: string; name: string; avatar: string; color: string };
 
+/**
+ * Liveblocks room provider component.
+ * Sets up the real-time collaboration environment with:
+ * - Custom authentication endpoint
+ * - User resolution for mentions and presence
+ * - Room information resolution
+ * - Initial storage for document margins
+ *
+ * @param {Object} props - The component props
+ * @param {ReactNode} props.children - Child components to render within the room context
+ * @returns {JSX.Element} The rendered room provider
+ */
 export function Room({ children }: { children: ReactNode }) {
   const params = useParams();
 
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
+    /**
+     *
+     */
     const fetchUsers = async () => {
       try {
         const users = await getUsers();

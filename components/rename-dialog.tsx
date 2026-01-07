@@ -1,3 +1,9 @@
+/**
+ * @file Document rename dialog component.
+ * Provides a modal dialog for changing document titles.
+ * @module components/rename-dialog
+ */
+
 "use client";
 
 import { useState } from "react";
@@ -20,12 +26,29 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 
+/**
+ * Props for the RenameDialog component.
+ * @interface RenameDialogProps
+ * @property {Id<"documents">} documentId - The ID of the document to rename
+ * @property {string} initialTitle - The current title of the document
+ * @property {React.ReactNode} children - Trigger element for the dialog
+ */
 interface RenameDialogProps {
   documentId: Id<"documents">;
   initialTitle: string;
   children: React.ReactNode;
 }
 
+/**
+ * A dialog component for renaming documents.
+ * Provides an input field for the new title and handles the rename mutation.
+ *
+ * @param {RenameDialogProps} props - The component props
+ * @param {Id<"documents">} props.documentId - The ID of the document to rename
+ * @param {string} props.initialTitle - The current title of the document
+ * @param {React.ReactNode} props.children - Trigger element for the dialog
+ * @returns {JSX.Element} The rendered dialog component
+ */
 export const RenameDialog = ({
   documentId,
   initialTitle,
@@ -37,6 +60,13 @@ export const RenameDialog = ({
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState(initialTitle);
 
+  /**
+   * Handles form submission for renaming the document.
+   * Trims whitespace and uses a fallback title if empty.
+   *
+   * @async
+   * @param {React.FormEvent<HTMLFormElement>} e - The form submit event
+   */
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsRenaming(true);

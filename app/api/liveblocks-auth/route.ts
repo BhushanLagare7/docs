@@ -1,3 +1,10 @@
+/**
+ * @file Liveblocks authentication API route.
+ * Handles authentication for real-time collaboration features,
+ * validating user access to documents and creating Liveblocks sessions.
+ * @module app/api/liveblocks-auth/route
+ */
+
 import { ConvexHttpClient } from "convex/browser";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { Liveblocks } from "@liveblocks/node";
@@ -7,6 +14,20 @@ import { Id } from "@/convex/_generated/dataModel";
 
 import { generateUserColor } from "@/lib/user-colors";
 
+/**
+ * Handles POST requests for Liveblocks authentication.
+ * Validates user authentication, document access permissions,
+ * and creates a Liveblocks session with user information.
+ *
+ * @async
+ * @param {Request} req - The incoming request object containing the room ID
+ * @returns {Promise<Response>} The Liveblocks authorization response or error
+ *
+ * @throws {Response} 400 - Invalid JSON or missing room parameter
+ * @throws {Response} 401 - Unauthorized user or document access denied
+ * @throws {Response} 404 - Document not found
+ * @throws {Response} 500 - Server configuration error or authorization failure
+ */
 export async function POST(req: Request) {
   // Validate environment variables
   const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;

@@ -1,3 +1,9 @@
+/**
+ * @file Font family selection button for the editor toolbar.
+ * Provides a dropdown menu to select from available font families.
+ * @module components/toolbar/font-family-button
+ */
+
 import { ChevronDownIcon } from "lucide-react";
 
 import { fonts } from "@/constants/toolbar";
@@ -12,6 +18,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+/**
+ * A dropdown button component for font family selection.
+ * Displays the currently selected font and shows available fonts
+ * in a dropdown menu with preview styling.
+ *
+ * @returns {JSX.Element} The rendered font family button with dropdown
+ */
 export const FontFamilyButton = () => {
   const { editor } = useEditorStore();
 

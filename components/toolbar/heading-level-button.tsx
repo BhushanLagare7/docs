@@ -1,3 +1,9 @@
+/**
+ * @file Heading level selection button for the editor toolbar.
+ * Provides a dropdown to select heading levels (H1-H5) or normal text.
+ * @module components/toolbar/heading-level-button
+ */
+
 import { ChevronDownIcon } from "lucide-react";
 import { type Level } from "@tiptap/extension-heading";
 
@@ -13,9 +19,20 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+/**
+ * A dropdown button component for heading level selection.
+ * Displays options for H1-H5 headings and normal paragraph text.
+ *
+ * @returns {JSX.Element} The rendered heading level button with dropdown
+ */
 export const HeadingLevelButton = () => {
   const { editor } = useEditorStore();
 
+  /**
+   * Gets the label for the currently active heading level.
+   *
+   * @returns {string} The heading label (e.g., "Heading 1") or "Normal Text"
+   */
   const getCurrentHeading = () => {
     for (let level = 1; level <= 5; level++) {
       if (editor?.isActive("heading", { level })) {

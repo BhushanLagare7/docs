@@ -1,4 +1,10 @@
 /**
+ * @file User color generation utility.
+ * Generates consistent colors for users based on their IDs.
+ * @module lib/user-colors
+ */
+
+/**
  * Generate a consistent color for a user based on their ID.
  * Uses a simple hash function to convert the user ID into an HSL color.
  *

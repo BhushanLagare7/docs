@@ -1,3 +1,9 @@
+/**
+ * @file Editor toolbar component.
+ * Provides formatting controls, font options, and document actions.
+ * @module app/documents/[documentId]/toolbar
+ */
+
 "use client";
 
 import {
@@ -29,6 +35,19 @@ import { TextColorButton } from "@/components/toolbar/text-color-button";
 import { ToolbarButton } from "@/components/toolbar/toolbar-button";
 import { Separator } from "@/components/ui/separator";
 
+/**
+ * The main editor toolbar component.
+ * Organizes formatting controls into logical sections:
+ * - Undo/Redo and print controls
+ * - Font family and heading level
+ * - Font size controls
+ * - Text styling (bold, italic, underline)
+ * - Text and highlight colors
+ * - Links, images, alignment, and line height
+ * - Lists and advanced formatting
+ *
+ * @returns {JSX.Element} The rendered toolbar component
+ */
 export const Toolbar = () => {
   const { editor } = useEditorStore();
 
@@ -42,21 +61,33 @@ export const Toolbar = () => {
       {
         label: "Undo",
         icon: Undo2Icon,
+        /**
+         *
+         */
         onClick: () => editor?.chain().focus().undo().run(),
       },
       {
         label: "Redo",
         icon: Redo2Icon,
+        /**
+         *
+         */
         onClick: () => editor?.chain().focus().redo().run(),
       },
       {
         label: "Print",
         icon: PrinterIcon,
+        /**
+         *
+         */
         onClick: () => window.print(),
       },
       {
         label: "Spell Check",
         icon: SpellCheckIcon,
+        /**
+         *
+         */
         onClick: () => {
           const current = editor?.view.dom.getAttribute("spellcheck");
           editor?.view.dom.setAttribute(
@@ -70,18 +101,27 @@ export const Toolbar = () => {
       {
         label: "Bold",
         icon: BoldIcon,
+        /**
+         *
+         */
         onClick: () => editor?.chain().focus().toggleBold().run(),
         isActive: editor?.isActive("bold"),
       },
       {
         label: "Italic",
         icon: ItalicIcon,
+        /**
+         *
+         */
         onClick: () => editor?.chain().focus().toggleItalic().run(),
         isActive: editor?.isActive("italic"),
       },
       {
         label: "Underline",
         icon: UnderlineIcon,
+        /**
+         *
+         */
         onClick: () => editor?.chain().focus().toggleUnderline().run(),
         isActive: editor?.isActive("underline"),
       },
@@ -90,18 +130,27 @@ export const Toolbar = () => {
       {
         label: "Comment",
         icon: MessageSquarePlusIcon,
+        /**
+         *
+         */
         onClick: () => editor?.chain().focus().addPendingComment().run(),
         isActive: editor?.isActive("liveblocksCommentMark"),
       },
       {
         label: "List Todo",
         icon: ListTodoIcon,
+        /**
+         *
+         */
         onClick: () => editor?.chain().focus().toggleTaskList().run(),
         isActive: editor?.isActive("taskList"),
       },
       {
         label: "Remove Formatting",
         icon: RemoveFormattingIcon,
+        /**
+         *
+         */
         onClick: () => editor?.chain().focus().unsetAllMarks().run(),
       },
     ],

@@ -1,3 +1,9 @@
+/**
+ * @file Avatar components for displaying collaborative users.
+ * Shows avatars of users currently viewing or editing the document.
+ * @module app/documents/[documentId]/avatars
+ */
+
 "use client";
 
 import Image from "next/image";
@@ -7,8 +13,18 @@ import { useOthers, useSelf } from "@liveblocks/react/suspense";
 
 import { Separator } from "@/components/ui/separator";
 
+/**
+ * Size of avatar images in pixels.
+ * @constant {number}
+ */
 const AVATAR_SIZE = 36;
 
+/**
+ * Container component for displaying user avatars with suspense handling.
+ * Renders null as fallback while loading.
+ *
+ * @returns {JSX.Element} The rendered avatars container with suspense
+ */
 export const Avatars = () => {
   return (
     <ClientSideSuspense fallback={null}>
@@ -17,6 +33,12 @@ export const Avatars = () => {
   );
 };
 
+/**
+ * Displays a stack of avatars for all users in the room.
+ * Shows the current user's avatar and all other connected users.
+ *
+ * @returns {JSX.Element | null} The rendered avatar stack, or null if no other users
+ */
 const AvatarStack = () => {
   const users = useOthers();
   const currentUser = useSelf();
@@ -42,11 +64,26 @@ const AvatarStack = () => {
   );
 };
 
+/**
+ * Props for the Avatar component.
+ * @interface AvatarProps
+ * @property {string} name - The user's display name
+ * @property {string} src - URL of the user's avatar image
+ */
 interface AvatarProps {
   name: string;
   src: string;
 }
 
+/**
+ * Displays a single user avatar with hover tooltip.
+ * Shows the user's name on hover.
+ *
+ * @param {AvatarProps} props - The component props
+ * @param {string} props.name - The user's display name
+ * @param {string} props.src - URL of the user's avatar image
+ * @returns {JSX.Element} The rendered avatar component
+ */
 const Avatar = ({ name, src }: AvatarProps) => {
   return (
     <div

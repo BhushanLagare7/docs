@@ -1,3 +1,9 @@
+/**
+ * @file Inbox notification component for Liveblocks notifications.
+ * Displays a dropdown menu with real-time notifications for comments and mentions.
+ * @module app/documents/[documentId]/inbox
+ */
+
 "use client";
 
 import { BellIcon } from "lucide-react";
@@ -13,6 +19,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 
+/**
+ * Container component for the inbox with suspense handling.
+ * Displays a disabled loading state while fetching notifications.
+ *
+ * @returns {JSX.Element} The rendered inbox container with suspense
+ */
 export const Inbox = () => {
   return (
     <ClientSideSuspense
@@ -36,6 +48,12 @@ export const Inbox = () => {
   );
 };
 
+/**
+ * Dropdown menu component displaying inbox notifications.
+ * Shows notification count badge and list of unread notifications.
+ *
+ * @returns {JSX.Element} The rendered inbox dropdown menu
+ */
 const InboxMenu = () => {
   const { inboxNotifications } = useInboxNotifications();
 

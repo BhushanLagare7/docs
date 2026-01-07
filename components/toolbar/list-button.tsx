@@ -1,3 +1,9 @@
+/**
+ * @file List type selection button for the editor toolbar.
+ * Provides options for bullet and ordered lists.
+ * @module components/toolbar/list-button
+ */
+
 import { ListIcon, ListOrderedIcon } from "lucide-react";
 
 import { useEditorStore } from "@/store/use-editor-store";
@@ -11,6 +17,12 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
+/**
+ * A dropdown button component for list type selection.
+ * Allows toggling between bullet lists and ordered lists.
+ *
+ * @returns {JSX.Element} The rendered list button with dropdown
+ */
 export const ListButton = () => {
   const { editor } = useEditorStore();
 
@@ -19,12 +31,18 @@ export const ListButton = () => {
       label: "Bullet List",
       icon: ListIcon,
       isActive: editor?.isActive("bulletList"),
+      /**
+       *
+       */
       onClick: () => editor?.chain().focus().toggleBulletList().run(),
     },
     {
       label: "Ordered List",
       icon: ListOrderedIcon,
       isActive: editor?.isActive("orderedList"),
+      /**
+       *
+       */
       onClick: () => editor?.chain().focus().toggleOrderedList().run(),
     },
   ];

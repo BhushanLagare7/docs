@@ -1,9 +1,21 @@
+/**
+ * @file Font size control button for the editor toolbar.
+ * Provides increment/decrement buttons and direct input for font size.
+ * @module components/toolbar/font-size-button
+ */
+
 import { useState } from "react";
 
 import { MinusIcon, PlusIcon } from "lucide-react";
 
 import { useEditorStore } from "@/store/use-editor-store";
 
+/**
+ * A font size control component with increment/decrement buttons.
+ * Allows users to adjust font size via buttons or direct text input.
+ *
+ * @returns {JSX.Element} The rendered font size control
+ */
 export const FontSizeButton = () => {
   const { editor } = useEditorStore();
 
@@ -15,6 +27,12 @@ export const FontSizeButton = () => {
   const [inputValue, setInputValue] = useState(fontSize);
   const [isEditing, setIsEditing] = useState(false);
 
+  /**
+   * Updates the font size in the editor and local state.
+   * Validates that the size is a positive number.
+   *
+   * @param {string} newSize - The new font size as a string
+   */
   const updateFontSize = (newSize: string) => {
     const size = parseInt(newSize);
     if (!isNaN(size) && size > 0) {
@@ -25,14 +43,27 @@ export const FontSizeButton = () => {
     }
   };
 
+  /**
+   * Handles input value changes in edit mode.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} e - The change event
+   */
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
+  /**
+   * Applies the font size when input loses focus.
+   */
   const handleInputBlur = () => {
     updateFontSize(inputValue);
   };
 
+  /**
+   * Handles Enter key to apply font size.
+   *
+   * @param {React.KeyboardEvent<HTMLInputElement>} e - The keyboard event
+   */
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -41,11 +72,17 @@ export const FontSizeButton = () => {
     }
   };
 
+  /**
+   * Increments the font size by 1.
+   */
   const increment = () => {
     const newSize = parseInt(fontSize) + 1;
     updateFontSize(newSize.toString());
   };
 
+  /**
+   * Decrements the font size by 1, minimum 1.
+   */
   const decrement = () => {
     const newSize = parseInt(fontSize) - 1;
     if (newSize > 0) {

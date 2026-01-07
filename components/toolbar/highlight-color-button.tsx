@@ -1,3 +1,9 @@
+/**
+ * @file Highlight color picker button for the editor toolbar.
+ * Provides a color picker dropdown for setting text highlight color.
+ * @module components/toolbar/highlight-color-button
+ */
+
 import { type ColorResult, SketchPicker } from "react-color";
 
 import { HighlighterIcon } from "lucide-react";
@@ -10,11 +16,22 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
+/**
+ * A dropdown button component with color picker for text highlighting.
+ * Uses the SketchPicker for color selection.
+ *
+ * @returns {JSX.Element} The rendered highlight color button with color picker
+ */
 export const HighlightColorButton = () => {
   const { editor } = useEditorStore();
 
   const value = editor?.getAttributes("highlight")?.color;
 
+  /**
+   * Applies the selected highlight color to the editor.
+   *
+   * @param {ColorResult} color - The selected color from the picker
+   */
   const onChange = (color: ColorResult) => {
     editor?.chain().focus().setHighlight({ color: color.hex }).run();
   };

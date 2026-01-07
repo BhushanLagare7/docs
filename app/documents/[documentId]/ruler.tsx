@@ -1,3 +1,9 @@
+/**
+ * @file Document margin ruler component.
+ * Provides draggable margin markers for adjusting left and right document margins.
+ * @module app/documents/[documentId]/ruler
+ */
+
 import { useRef, useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 
@@ -5,8 +11,19 @@ import { useMutation, useStorage } from "@liveblocks/react";
 
 import { LEFT_MARGIN_DEFAULT, RIGHT_MARGIN_DEFAULT } from "@/constants/margins";
 
+/**
+ * Array of marker positions for the ruler graduations.
+ * @constant {number[]}
+ */
 const markers = Array.from({ length: 83 }, (_, index) => index);
 
+/**
+ * A ruler component for adjusting document margins.
+ * Displays a visual ruler with draggable left and right margin markers.
+ * Margins are synced in real-time via Liveblocks storage.
+ *
+ * @returns {JSX.Element} The rendered ruler component
+ */
 export const Ruler = () => {
   const leftMargin =
     useStorage((storage) => storage.leftMargin) ?? LEFT_MARGIN_DEFAULT;
@@ -26,14 +43,26 @@ export const Ruler = () => {
 
   const rulerRef = useRef<HTMLDivElement>(null);
 
+  /**
+   * Initiates left margin dragging.
+   */
   const handleLeftMouseDown = () => {
     setIsDraggingLeft(true);
   };
 
+  /**
+   * Initiates right margin dragging.
+   */
   const handleRightMouseDown = () => {
     setIsDraggingRight(true);
   };
 
+  /**
+   * Handles mouse movement during margin dragging.
+   * Constrains margin positions to valid ranges and maintains minimum space between margins.
+   *
+   * @param {React.MouseEvent} event - The mouse move event
+   */
   const handleMouseMove = (event: React.MouseEvent) => {
     const PAGE_WIDTH = 816;
     const MINIMUM_SPACE_BETWEEN_MARGINS = 100;
@@ -64,15 +93,24 @@ export const Ruler = () => {
     }
   };
 
+  /**
+   * Stops all margin dragging operations.
+   */
   const handleMouseUp = () => {
     setIsDraggingLeft(false);
     setIsDraggingRight(false);
   };
 
+  /**
+   * Resets the left margin to its default value.
+   */
   const handleLeftDoubleClick = () => {
     setLeftMargin(LEFT_MARGIN_DEFAULT);
   };
 
+  /**
+   * Resets the right margin to its default value.
+   */
   const handleRightDoubleClick = () => {
     setRightMargin(RIGHT_MARGIN_DEFAULT);
   };
@@ -137,6 +175,15 @@ export const Ruler = () => {
   );
 };
 
+/**
+ * Props for the Marker component.
+ * @interface MarkerProps
+ * @property {number} position - The position of the marker in pixels
+ * @property {boolean} isLeft - Whether this is the left margin marker
+ * @property {boolean} isDragging - Whether the marker is currently being dragged
+ * @property {function} onMouseDown - Callback when mouse down on the marker
+ * @property {function} onDoubleClick - Callback when double-clicking the marker
+ */
 interface MarkerProps {
   position: number;
   isLeft: boolean;
@@ -145,6 +192,19 @@ interface MarkerProps {
   onDoubleClick: () => void;
 }
 
+/**
+ * A draggable margin marker component.
+ * Displays a caret icon that can be dragged to adjust document margins.
+ * Shows a vertical guide line when being dragged.
+ *
+ * @param {MarkerProps} props - The component props
+ * @param {number} props.position - Position in pixels from the edge
+ * @param {boolean} props.isLeft - Whether this is the left margin marker
+ * @param {boolean} props.isDragging - Current dragging state
+ * @param {function} props.onMouseDown - Mouse down event handler
+ * @param {function} props.onDoubleClick - Double click event handler
+ * @returns {JSX.Element} The rendered marker component
+ */
 const Marker = ({
   position,
   isLeft,

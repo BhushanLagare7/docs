@@ -1,3 +1,9 @@
+/**
+ * @file Image insertion button for the editor toolbar.
+ * Provides options to upload an image or paste an image URL.
+ * @module components/toolbar/image-button
+ */
+
 import { useState } from "react";
 
 import { ImageIcon, SearchIcon, UploadIcon } from "lucide-react";
@@ -20,21 +26,40 @@ import {
 } from "../ui/dropdown-menu";
 import { Input } from "../ui/input";
 
+/**
+ * A button component for inserting images into the editor.
+ * Supports file upload and URL-based image insertion.
+ *
+ * @returns {JSX.Element} The rendered image button with dropdown and dialog
+ */
 export const ImageButton = () => {
   const { editor } = useEditorStore();
 
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>("");
 
+  /**
+   * Sets the image source in the editor.
+   *
+   * @param {string} src - The image source URL
+   */
   const onChange = (src: string) => {
     editor?.chain().focus().setImage({ src }).run();
   };
 
+  /**
+   * Opens a file picker and uploads the selected image.
+   * Creates a temporary object URL for the uploaded file.
+   */
   const onUpload = () => {
     const input = document.createElement("input");
     input.type = "file";
     input.accept = "image/*";
 
+    /**
+     *
+     * @param e
+     */
     input.onchange = (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (!file) return;
@@ -46,6 +71,10 @@ export const ImageButton = () => {
     input.click();
   };
 
+  /**
+   * Handles image URL form submission.
+   * Clears the input and closes the dialog after insertion.
+   */
   const handleImageUrlSubmit = () => {
     if (!imageUrl) return;
     onChange(imageUrl);

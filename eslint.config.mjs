@@ -1,6 +1,7 @@
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
+import jsdoc from "eslint-plugin-jsdoc";
 // Import the plugin responsible for sorting imports and exports
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 
@@ -14,6 +15,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "docs-gen/**",
+    "convex/_generated/**",
   ]),
   {
     rules: {
@@ -113,6 +116,50 @@ const eslintConfig = defineConfig([
       // RULE: Enforce sorted exports.
       // This ensures `export { a, b } from "x"` acts predictably.
       "simple-import-sort/exports": "error",
+    },
+  },
+  {
+    plugins: {
+      jsdoc: jsdoc,
+    },
+    rules: {
+      "jsdoc/require-jsdoc": [
+        "warn",
+        {
+          require: {
+            FunctionDeclaration: true,
+            MethodDefinition: true,
+            ClassDeclaration: true,
+            ArrowFunctionExpression: true,
+            FunctionExpression: true,
+          },
+          contexts: [
+            "VariableDeclarator > ArrowFunctionExpression",
+            "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > ArrowFunctionExpression",
+          ],
+        },
+      ],
+      "jsdoc/require-param": "warn",
+      "jsdoc/require-param-type": "off", // TypeScript already handles types
+      "jsdoc/require-returns": "warn",
+      "jsdoc/require-returns-type": "off", // TypeScript already handles types
+      "jsdoc/check-param-names": "warn",
+      "jsdoc/check-tag-names": [
+        "warn",
+        {
+          definedTags: ["fileoverview", "constant", "async", "module"],
+        },
+      ],
+      "jsdoc/check-types": "off", // TypeScript handles this
+      "jsdoc/no-undefined-types": "off", // TypeScript handles this
+    },
+  },
+  {
+    files: ["components/ui/**", "convex/_generated/**"],
+    rules: {
+      "jsdoc/require-jsdoc": "off",
+      "jsdoc/require-param": "off",
+      "jsdoc/require-returns": "off",
     },
   },
 ]);

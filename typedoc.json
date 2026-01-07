@@ -1,0 +1,18 @@
+{
+  "entryPoints": [
+    "app",
+    "components",
+    "constants",
+    "convex",
+    "extensions",
+    "hooks",
+    "lib",
+    "store"
+  ],
+  "entryPointStrategy": "expand",
+  "out": "docs-gen",
+  "exclude": ["**/*.test.ts", "**/node_modules/**"],
+  "hideGenerator": true,
+  "theme": "default",
+  "name": "Docs Clone API Documentation"
+}

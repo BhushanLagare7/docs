@@ -1,3 +1,9 @@
+/**
+ * @file Documents table component for displaying a paginated list of documents.
+ * Shows documents in a table format with infinite scroll pagination.
+ * @module app/(home)/documents-table
+ */
+
 import { PaginationStatus } from "convex/react";
 import { LoaderIcon } from "lucide-react";
 
@@ -15,12 +21,37 @@ import {
 
 import { DocumentRow } from "./document-row";
 
+/**
+ * Props for the DocumentsTable component.
+ * @interface DocumentsTableProps
+ * @property {Doc<"documents">[] | undefined} documents - Array of documents to display, or undefined while loading
+ * @property {function} loadMore - Callback function to load more documents
+ * @property {PaginationStatus} status - Current pagination status ('LoadingMore', 'CanLoadMore', 'Exhausted')
+ */
 interface DocumentsTableProps {
   documents: Doc<"documents">[] | undefined;
   loadMore: (numItems: number) => void;
   status: PaginationStatus;
 }
 
+/**
+ * A table component that displays a list of documents with pagination support.
+ * Shows a loading spinner while documents are being fetched, displays an empty
+ * state when no documents exist, and provides a "Load more" button for pagination.
+ *
+ * @param {DocumentsTableProps} props - The component props
+ * @param {Doc<"documents">[] | undefined} props.documents - Array of documents to display
+ * @param {function} props.loadMore - Callback function to load more documents
+ * @param {PaginationStatus} props.status - Current pagination status
+ * @returns {JSX.Element} The rendered documents table component
+ *
+ * @example
+ * <DocumentsTable
+ *   documents={documents}
+ *   loadMore={loadMore}
+ *   status={status}
+ * />
+ */
 export const DocumentsTable = ({
   documents,
   loadMore,

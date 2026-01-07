@@ -1,3 +1,9 @@
+/**
+ * @file Templates gallery component for creating new documents from templates.
+ * Displays a carousel of document templates that users can click to create new documents.
+ * @module app/(home)/templates-gallery
+ */
+
 "use client";
 
 import { useState } from "react";
@@ -19,6 +25,16 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+/**
+ * A gallery component that displays document templates in a carousel.
+ * Allows users to create new documents by clicking on a template.
+ * Shows a loading state while a document is being created.
+ *
+ * @returns {JSX.Element} The rendered templates gallery component
+ *
+ * @example
+ * <TemplatesGallery />
+ */
 export const TemplatesGallery = () => {
   const router = useRouter();
 
@@ -26,6 +42,16 @@ export const TemplatesGallery = () => {
 
   const create = useMutation(api.documents.create);
 
+  /**
+   * Handles template click to create a new document.
+   * Creates a document with the template's title and content,
+   * then navigates to the new document's editor page.
+   *
+   * @async
+   * @param {string} title - The title for the new document
+   * @param {string} initialContent - The initial content from the template
+   * @returns {Promise<void>}
+   */
   const onTemplateClick = async (title: string, initialContent: string) => {
     setIsCreating(true);
     try {

@@ -1,3 +1,9 @@
+/**
+ * @file Document input component for editing document titles.
+ * Provides inline editing with debounced auto-save and visual status indicators.
+ * @module app/documents/[documentId]/document-input
+ */
+
 import { useRef, useState } from "react";
 import { BsCloudCheck, BsCloudSlash } from "react-icons/bs";
 
@@ -11,11 +17,27 @@ import { Id } from "@/convex/_generated/dataModel";
 
 import { useDebounce } from "@/hooks/use-debounce";
 
+/**
+ * Props for the DocumentInput component.
+ * @interface DocumentInputProps
+ * @property {Id<"documents">} id - The unique identifier for the document
+ * @property {string} title - The current title of the document
+ */
 interface DocumentInputProps {
   id: Id<"documents">;
   title: string;
 }
 
+/**
+ * An inline editable input component for document titles.
+ * Features auto-save with debouncing, connection status indicators,
+ * and visual feedback for save operations.
+ *
+ * @param {DocumentInputProps} props - The component props
+ * @param {Id<"documents">} props.id - The unique identifier for the document
+ * @param {string} props.title - The current title of the document
+ * @returns {JSX.Element} The rendered document input component
+ */
 export const DocumentInput = ({ id, title }: DocumentInputProps) => {
   const status = useStatus();
 
@@ -31,6 +53,12 @@ export const DocumentInput = ({ id, title }: DocumentInputProps) => {
 
   const mutate = useMutation(api.documents.updateById);
 
+  /**
+   * Debounced function to update the document title.
+   * Only updates if the new value differs from the original title.
+   *
+   * @param {string} newValue - The new title value to save
+   */
   const debounceUpdate = useDebounce(async (newValue: string) => {
     if (newValue === title) return;
 
@@ -46,12 +74,23 @@ export const DocumentInput = ({ id, title }: DocumentInputProps) => {
     }
   }, 1000);
 
+  /**
+   * Handles input value changes and triggers debounced update.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} e - The change event
+   */
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setValue(newValue);
     debounceUpdate(newValue);
   };
 
+  /**
+   * Handles form submission for immediate title update.
+   *
+   * @async
+   * @param {React.FormEvent<HTMLFormElement>} e - The form submit event
+   */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

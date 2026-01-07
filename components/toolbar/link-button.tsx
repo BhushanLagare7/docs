@@ -1,3 +1,9 @@
+/**
+ * @file Link insertion button for the editor toolbar.
+ * Provides an input field to add or edit hyperlinks on selected text.
+ * @module components/toolbar/link-button
+ */
+
 import { useState } from "react";
 
 import { Link2Icon } from "lucide-react";
@@ -12,11 +18,22 @@ import {
 } from "../ui/dropdown-menu";
 import { Input } from "../ui/input";
 
+/**
+ * A dropdown button component for adding links to text.
+ * Allows users to input and apply URLs to selected text.
+ *
+ * @returns {JSX.Element} The rendered link button with input dropdown
+ */
 export const LinkButton = () => {
   const { editor } = useEditorStore();
 
   const [value, setValue] = useState<string>("");
 
+  /**
+   * Applies the link to the selected text range.
+   *
+   * @param {string} href - The URL to apply as a link
+   */
   const onChange = (href: string) => {
     editor?.chain().focus().extendMarkRange("link").setLink({ href }).run();
     setValue("");
