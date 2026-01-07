@@ -70,8 +70,9 @@ export const TemplatesGallery = () => {
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
                     }}
-                    // TODO: Add initial content
-                    onClick={() => onTemplateClick(template.label, "")}
+                    onClick={() =>
+                      onTemplateClick(template.label, template.initialContent)
+                    }
                   />
                   <p className="text-sm font-medium truncate">
                     {template.label}
