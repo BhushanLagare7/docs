@@ -5,6 +5,8 @@ import { Liveblocks } from "@liveblocks/node";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
+import { generateUserColor } from "@/lib/user-colors";
+
 export async function POST(req: Request) {
   // Validate environment variables
   const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
@@ -79,11 +81,14 @@ export async function POST(req: Request) {
     return new Response("Unauthorized document", { status: 401 });
   }
 
+  const name =
+    user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous";
+
   const session = liveblocks.prepareSession(user.id, {
     userInfo: {
-      name:
-        user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous",
+      name,
       avatar: user.imageUrl,
+      color: generateUserColor(user.id),
     },
   });
 

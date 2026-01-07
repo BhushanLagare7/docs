@@ -6,6 +6,8 @@ import { auth, clerkClient } from "@clerk/nextjs/server";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
+import { generateUserColor } from "@/lib/user-colors";
+
 export async function getDocuments(ids: Id<"documents">[]) {
   const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
 
@@ -31,6 +33,7 @@ export async function getUsers() {
     name:
       user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous",
     avatar: user.imageUrl,
+    color: generateUserColor(user.id),
   }));
 
   return users;

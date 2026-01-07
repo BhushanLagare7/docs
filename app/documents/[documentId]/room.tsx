@@ -17,7 +17,7 @@ import { FullScreenLoader } from "@/components/fullscreen-loader";
 
 import { getDocuments, getUsers } from "./actions";
 
-type User = { id: string; name: string; avatar: string };
+type User = { id: string; name: string; avatar: string; color: string };
 
 export function Room({ children }: { children: ReactNode }) {
   const params = useParams();
