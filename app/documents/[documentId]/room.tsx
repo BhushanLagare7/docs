@@ -10,6 +10,7 @@ import {
   RoomProvider,
 } from "@liveblocks/react/suspense";
 
+import { LEFT_MARGIN_DEFAULT, RIGHT_MARGIN_DEFAULT } from "@/constants/margins";
 import { Id } from "@/convex/_generated/dataModel";
 
 import { FullScreenLoader } from "@/components/fullscreen-loader";
@@ -77,7 +78,10 @@ export function Room({ children }: { children: ReactNode }) {
     >
       <RoomProvider
         id={params.documentId as string}
-        initialStorage={{ leftMargin: 56, rightMargin: 56 }}
+        initialStorage={{
+          leftMargin: LEFT_MARGIN_DEFAULT,
+          rightMargin: RIGHT_MARGIN_DEFAULT,
+        }}
       >
         <ClientSideSuspense
           fallback={<FullScreenLoader label="Room loading..." />}
